@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amitours Holdings Access Matrix</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .access-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .access-level {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .access-level:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .level-1 { border-left-color: #e74c3c; }
+        .level-2 { border-left-color: #f39c12; }
+        .level-3 { border-left-color: #27ae60; }
+        
+        .access-level h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .role-tag {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin: 3px;
+        }
+        
+        .systems-matrix {
+            margin-top: 40px;
+            overflow-x: auto;
+        }
+        
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .matrix-table th {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 500;
+        }
+        
+        .matrix-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ecf0f1;
+            transition: background-color 0.3s ease;
+        }
+        
+        .matrix-table tr:hover td {
+            background: #f8f9fa;
+        }
+        
+        .access-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .full-access { background: #27ae60; }
+        .edit-access { background: #f39c12; }
+        .view-access { background: #3498db; }
+        .no-access { background: #bdc3c7; }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+        }
+        
+        .integration-flow {
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+        }
+        
+        .flow-step {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+        }
+        
+        .step-number {
+            background: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .responsive-note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .access-grid { grid-template-columns: 1fr; }
+            .legend { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Amitours Holdings</h1>
+            <p>Unified Access Management System</p>
+        </div>
+        
+        <div class="content">
+            <div class="access-grid">
+                <div class="access-level level-1">
+                    <h3>🔴 Level 1: Holding Leadership</h3>
+                    <div class="role-tag">Raitis (CEO)</div>
+                    <div class="role-tag">Ashkan (MD)</div>
+                    <div class="role-tag">Sergey (AI/IT)</div>
+                    <div class="role-tag">Noemi (Legal)</div>
+                    <div class="role-tag">Artjoms (Operations)</div>
+                    <div class="role-tag">Mark (BizDev)</div>
+                    <div class="role-tag">Diana (PA/Coordinator)</div>
+                    <p style="margin-top: 15px; font-size: 0.9em; color: #7f8c8d;">
+                        <strong>Access:</strong> Full system access across all business units
+                    </p>
+                </div>
+                
+                <div class="access-level level-2">
+                    <h3>🟡 Level 2: Business Unit Leaders</h3>
+                    <div class="role-tag">Alps2Alps Leaders</div>
+                    <div class="role-tag">GlobalTransfers</div>
+                    <div class="role-tag">Shreddo</div>
+                    <div class="role-tag">Alveda</div>
+                    <div class="role-tag">SkiBookers</div>
+                    <div class="role-tag">CTO/CMO/COO</div>
+                    <p style="margin-top: 15px; font-size: 0.9em; color: #7f8c8d;">
+                        <strong>Access:</strong> Full access to own business unit, limited cross-unit visibility
+                    </p>
+                </div>
+                
+                <div class="access-level level-3">
+                    <h3>🟢 Level 3: Department Specialists</h3>
+                    <div class="role-tag">Product Managers</div>
+                    <div class="role-tag">Developers</div>
+                    <div class="role-tag">Designers</div>
+                    <div class="role-tag">Marketing</div>
+                    <div class="role-tag">Customer Service</div>
+                    <div class="role-tag">Finance</div>
+                    <div class="role-tag">BizDev</div>
+                    <p style="margin-top: 15px; font-size: 0.9em; color: #7f8c8d;">
+                        <strong>Access:</strong> Department-specific access based on role requirements
+                    </p>
+                </div>
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <span class="access-indicator full-access"></span>
+                    <span>Full Access (Create/Edit/Delete/Export)</span>
+                </div>
+                <div class="legend-item">
+                    <span class="access-indicator edit-access"></span>
+                    <span>Edit Access (View/Edit/Export)</span>
+                </div>
+                <div class="legend-item">
+                    <span class="access-indicator view-access"></span>
+                    <span>View Access (Read-only)</span>
+                </div>
+                <div class="legend-item">
+                    <span class="access-indicator no-access"></span>
+                    <span>No Access</span>
+                </div>
+            </div>
+            
+            <div class="systems-matrix">
+                <table class="matrix-table">
+                    <thead>
+                        <tr>
+                            <th>System/Module</th>
+                            <th>Level 1 (Leadership)</th>
+                            <th>Level 2 (BU Leaders)</th>
+                            <th>Level 3 (Specialists)</th>
+                            <th>Examples</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>MnG - Planning</strong></td>
+                            <td><span class="access-indicator full-access"></span>Full Access</td>
+                            <td><span class="access-indicator edit-access"></span>Edit Access</td>
+                            <td><span class="access-indicator view-access"></span>View Access</td>
+                            <td>Graph Planners, Transfer Calendar</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MnG - Operations</strong></td>
+                            <td><span class="access-indicator full-access"></span>Full Access</td>
+                            <td><span class="access-indicator edit-access"></span>Edit Access</td>
+                            <td><span class="access-indicator edit-access"></span>Role-based</td>
+                            <td>Orders, Payments, Driver Management</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TransferHub</strong></td>
+                            <td><span class="access-indicator full-access"></span>Full Access</td>
+                            <td><span class="access-indicator edit-access"></span>Business Unit</td>
+                            <td><span class="access-indicator view-access"></span>Department</td>
+                            <td>Route Management, Partner Network</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Alps2Alps Platform</strong></td>
+                            <td><span class="access-indicator full-access"></span>Full Access</td>
+                            <td><span class="access-indicator full-access"></span>A2A Full</td>
+                            <td><span class="access-indicator edit-access"></span>Role-based</td>
+                            <td>Customer Management, Operations</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Financial Systems</strong></td>
+                            <td><span class="access-indicator full-access"></span>Full Access</td>
+                            <td><span class="access-indicator view-access"></span>BU Reports</td>
+                            <td><span class="access-indicator edit-access"></span>Finance Only</td>
+                            <td>Accounting, Invoicing, Reports</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HR & Administration</strong></td>
+                            <td><span class="access-indicator full-access"></span>Full Access</td>
+                            <td><span class="access-indicator edit-access"></span>BU Team</td>
+                            <td><span class="access-indicator view-access"></span>Own Data</td>
+                            <td>Employee Records, Performance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Business Intelligence</strong></td>
+                            <td><span class="access-indicator full-access"></span>All Metrics</td>
+                            <td><span class="access-indicator view-access"></span>BU Metrics</td>
+                            <td><span class="access-indicator view-access"></span>Dept Metrics</td>
+                            <td>Analytics, KPIs, Reporting</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="integration-flow">
+                <h3 style="margin-bottom: 20px; color: #2c3e50;">🔗 System Integration Flow</h3>
+                
+                <div class="flow-step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <strong>Single Sign-On (SSO)</strong><br>
+                        <span style="color: #7f8c8d;">Unified authentication across all systems</span>
+                    </div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <strong>Role-Based Access Control (RBAC)</strong><br>
+                        <span style="color: #7f8c8d;">Centralized permission management</span>
+                    </div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <strong>Cross-System Data Sharing</strong><br>
+                        <span style="color: #7f8c8d;">Controlled information flow between platforms</span>
+                    </div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <strong>Unified Dashboard</strong><br>
+                        <span style="color: #7f8c8d;">Single interface for all business operations</span>
+                    </div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="step-number">5</div>
+                    <div>
+                        <strong>Audit & Compliance</strong><br>
+                        <span style="color: #7f8c8d;">Complete activity logging and monitoring</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="responsive-note">
+                <h4 style="margin-bottom: 10px;">📋 Implementation Notes:</h4>
+                <ul style="margin-left: 20px; color: #856404;">
+                    <li>This matrix serves as the foundation for technical implementation</li>
+                    <li>Each business unit may have specific requirements that need customization</li>
+                    <li>Regular access reviews and updates will be required as the organization grows</li>
+                    <li>Security protocols must be implemented at each integration point</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
